@@ -1,0 +1,24 @@
+{
+  "name": "intro",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Página web para el semestral de Introducción a la Teoría Computacional",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "repository": "https://github.com/JulianC606/semestralIntro.git",
+  "author": "Julián Cipagauta, Isaias Rodríguez, Daniela Moscoso, Nathalie Arroyaves, Ricky Pan",
+  "license": "MIT",
+  "scripts": {
+    "start": "npm-run-all client:build server:prod",
+    "dev": "run-p client:dev server:dev",
+    "client:build": "yarn workspace client build",
+    "client:dev": "yarn workspace client start",
+    "server:prod": "yarn workspace server start",
+    "server:dev": "yarn workspace server watch:dev"
+  },
+  "dependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}
