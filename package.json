@@ -11,11 +11,13 @@
   "author": "Julián Cipagauta, Isaias Rodríguez, Daniela Moscoso, Nathalie Arroyaves, Ricky Pan",
   "license": "MIT",
   "scripts": {
-    "start": "npm-run-all client:build server:prod",
+    "start": "yarn workspace server server",
+    "build": "npm-run-all client:build server:build",
     "dev": "run-p client:dev server:dev",
     "client:build": "yarn workspace client build",
     "client:dev": "yarn workspace client start",
     "server:prod": "yarn workspace server start",
+    "server:build": "yarn workspace server build",
     "server:dev": "yarn workspace server watch:dev"
   },
   "dependencies": {
