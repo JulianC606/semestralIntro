@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
 export const connectDB = () => {
-  mongoose.connect('mongodb+srv://intro:intro@cluster0-g5ixf.mongodb.net/intro?retryWrites=true&w=majority', {
+  mongoose.connect(process.env.DB_URI, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,

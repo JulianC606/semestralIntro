@@ -17,16 +17,21 @@
     "@babel/cli": "^7.10.4",
     "@babel/core": "^7.10.4",
     "@babel/preset-env": "^7.10.4",
+    "@babel/runtime": "^7.10.5",
+    "aws-sdk": "^2.720.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
     "express": "~4.16.1",
     "mongoose": "^5.9.24",
     "morgan": "~1.9.1",
     "nodemon": "^2.0.4",
     "npm-run-all": "^4.1.5",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "s3-proxy": "^1.2.1"
   },
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.10.5",
     "jest": "^24.9.0"
   },
   "nodemonConfig": {
@@ -43,6 +48,9 @@
   "babel": {
     "presets": [
       "@babel/preset-env"
+    ],
+    "plugins": [
+      "@babel/plugin-transform-runtime"
     ]
   },
   "jest": {

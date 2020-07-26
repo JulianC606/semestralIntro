@@ -1,45 +1,55 @@
-import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { Home } from './Pages/Home'
+// React
+import React, { useEffect } from 'react'
+
+// Redux
+import { connect } from 'react-redux'
+
+// React Router
+import { BrowserRouter as Router } from 'react-router-dom'
+
+import Pages from './Pages/Router'
+import { fetchStructure } from './Redux/Actions/structureActions'
+import { updateLocation } from './Redux/Actions/locationActions'
+
 import './App.less'
-import { NavBar } from './Components/Molecular/NavBar'
-import { Layout, Breadcrumb, Card } from 'antd'
+import NavBar from './Containers/NavbarContainer'
+import Sidebar from './Components/Molecular/Sidebar'
 
-const { Header, Content, Footer, Sider } = Layout
+import { Layout, Card, Row, Col } from 'antd'
 
-function App () {
+const { Header, Content, Footer } = Layout
+
+let App = ({ fetchStructure, updateLocation }) => {
+  useEffect(() => {
+    fetchStructure()
+    updateLocation(window.location.pathname.match(/^\/\w*/)[0])
+  }, [fetchStructure, updateLocation])
+
   return (
     <Router>
-      <Layout className='layout'>
-        <Sider
-          style={{
-            overflow: 'auto',
-            height: '100vh',
-            position: 'fixed',
-            left: 0
-          }}
-        />
-        <Layout style={{ marginLeft: 200 }}>
-          <Header style={{ padding: 0 }}>
+      <Row>
+        <Col flex='auto'>
+          <Header>
             <NavBar />
           </Header>
-          <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
-              <Breadcrumb.Item>List</Breadcrumb.Item>
-              <Breadcrumb.Item>App</Breadcrumb.Item>
-            </Breadcrumb>
-            <Card>
-              <Switch>
-                <Route path='/'>
-                  <Home />
-                </Route>
-              </Switch>
-            </Card>
-          </Content>
-          <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
-        </Layout>
-      </Layout>
+        </Col>
+      </Row>
+      <Row style={{ minHeight: '80vh' }}>
+        <Col>
+          <Sidebar />
+        </Col>
+        <Col flex='auto'>
+          <Card style={{ margin: '25px' }}>
+            <Pages />
+          </Card>
+        </Col>
+      </Row>
+      <Row>
+        <Col flex='auto'>
+          <Footer theme='dark' style={{ textAlign: 'center' }}>Página web del semestral de Introducción a la Teoría Computacional - Grupo 2 - 2020</Footer>
+        </Col>
+      </Row>
+
     </Router>
   )
 }
@@ -47,5 +57,13 @@ function App () {
 App.prototypes = {}
 
 App.defaultProps = {}
+
+const mapDispatchToProps = dispatch => ({
+  fetchStructure: () => dispatch(fetchStructure()),
+  updateLocation: newLocation => dispatch(updateLocation(newLocation))
+
+})
+
+App = connect(null, mapDispatchToProps)(App)
 
 export default App
