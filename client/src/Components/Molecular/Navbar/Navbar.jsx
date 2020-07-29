@@ -1,20 +1,29 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Menu } from 'antd'
-import Logo from '../../Atomic/Logo'
 
 export const Navbar = ({ structure, location, updateLocation }) => {
-  const handlerClick = (e, link) => {
-    updateLocation(link)
+  const handlerClick = link => updateLocation(link)
+
+  const navbarContentStyle = {
+    gridArea: '1/2/2/3',
+    width: '100%',
+    height: '100%',
+    boxShadow: '0px 0px 31px -9px rgba(0,0,0,0.83)',
+    backgroundColor: '#001529',
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'stretch',
+    padding: '0 10%'
   }
+
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginRight: '10%', width: '100%' }}>
-      <Logo />
+    <div style={navbarContentStyle}>
       <Menu theme='dark' mode='horizontal' selectedKeys={[location.location]}>
         {
-          structure.pages.map(({ link, title }) => (
-            <Menu.Item key={link}>
-              <Link to={link} onClick={(e) => handlerClick(e, link)}>
+          structure.pages.sort((a, b) => a.id > b.id ? 1 : -1).map(({ link, title }) => (
+            <Menu.Item key={link} style={{ height: '100%' }}>
+              <Link to={link} onClick={(e) => handlerClick(link)}>
                 {title}
               </Link>
             </Menu.Item>

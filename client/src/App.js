@@ -15,9 +15,9 @@ import './App.less'
 import NavBar from './Containers/NavbarContainer'
 import Sidebar from './Components/Molecular/Sidebar'
 
-import { Layout, Card, Row, Col } from 'antd'
+import { Layout } from 'antd'
 
-const { Header, Content, Footer } = Layout
+const { Footer } = Layout
 
 let App = ({ fetchStructure, updateLocation }) => {
   useEffect(() => {
@@ -27,29 +27,20 @@ let App = ({ fetchStructure, updateLocation }) => {
 
   return (
     <Router>
-      <Row>
-        <Col flex='auto'>
-          <Header>
-            <NavBar />
-          </Header>
-        </Col>
-      </Row>
-      <Row style={{ minHeight: '80vh' }}>
-        <Col>
-          <Sidebar />
-        </Col>
-        <Col flex='auto'>
-          <Card style={{ margin: '25px' }}>
-            <Pages />
-          </Card>
-        </Col>
-      </Row>
-      <Row>
-        <Col flex='auto'>
-          <Footer theme='dark' style={{ textAlign: 'center' }}>Página web del semestral de Introducción a la Teoría Computacional - Grupo 2 - 2020</Footer>
-        </Col>
-      </Row>
-
+      <div
+        style={{
+          minHeight: '100vh',
+          display: 'grid',
+          gridTemplateColumns: 'auto 1fr',
+          gridTemplateRows: '64px 1fr auto',
+          gap: 0
+        }}
+      >
+        <NavBar />
+        <Sidebar />
+        <Pages />
+        <Footer theme='dark' style={{ textAlign: 'center', gridArea: '3 / 1 / 4 / 3' }}>Página web del semestral de Introducción a la Teoría Computacional - Grupo 2 - 2020</Footer>
+      </div>
     </Router>
   )
 }

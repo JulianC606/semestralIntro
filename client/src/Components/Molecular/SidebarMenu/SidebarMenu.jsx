@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useLocation, Link } from 'react-router-dom'
+import Logo from '../../Atomic/Logo'
 
 import {
   TeamOutlined
@@ -14,9 +15,10 @@ export const SidebarMenu = ({ loading, structure }) => {
 
   const location = useLocation()
   useEffect(() => {
-    if (typeof section !== 'undefined') {
-      setSelectedItem(section.pages.filter(obj => obj.link === location.pathname)[0].id.toString())
-    } else {
+    try {
+      const selected = section.pages.filter(obj => obj.link === location.pathname)[0].id.toString()
+      setSelectedItem(selected)
+    } catch {
       setSelectedItem(null)
     }
   }, [section, location])
@@ -24,9 +26,10 @@ export const SidebarMenu = ({ loading, structure }) => {
   return (
     structure.loading
       ? <Spin />
-      : <Menu theme='dark' mode='inline' selectedKeys={[SelectedItem]}>
+      : <Menu theme='dark' mode='inline' selectedKeys={[SelectedItem]} style={{ height: '100%' }}>
+        <Logo />
         {
-          section.pages.map(({ title, link, id }) =>
+          section.pages.sort((a, b) => a.id > b.id ? 1 : -1).map(({ title, link, id }) =>
 
             (
               <Menu.Item key={id} icon={<TeamOutlined />}>
@@ -35,7 +38,6 @@ export const SidebarMenu = ({ loading, structure }) => {
             )
           )
         }
-      </Menu>
-
+        </Menu>
   )
 }

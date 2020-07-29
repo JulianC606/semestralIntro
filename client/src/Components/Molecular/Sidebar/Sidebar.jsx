@@ -16,7 +16,7 @@ export const Sidebar = () => {
         console.log(collapsed, type)
       }}
       collapsible
-      style={{ height: '100%' }}
+      style={{ height: '100%', gridArea: '1 / 1 / 3 / 2' }}
     >
       <SidebarMenu />
     </Sider>
