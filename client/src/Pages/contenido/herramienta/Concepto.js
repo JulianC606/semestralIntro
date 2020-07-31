@@ -8,7 +8,7 @@ import { Typography, Divider, Row, Col } from 'antd'
 const { Title, Paragraph, Text } = Typography
 
 const heroData = {
-  title: 'Ventajas y Desventajas',
+  title: 'Concepto',
   subtitle: 'Excel: Conversión y operaciones de sistema de numeración o Tabla de verdad',
   caption: 'Grupo 2 1SF-702',
   img: {

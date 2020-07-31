@@ -36,7 +36,24 @@ const content = [
   {
     title: 'Manual para Confección de Tablas de Verdad en Excel',
     link: '/contenido/manual',
-    key: '3'
+    key: '3',
+    children: [
+      {
+        title: '1: Cómo construir la tabla de la verdad',
+        link: '/contenido/manual/buildtruthtable',
+        key: '3-1'
+      },
+      {
+        title: '2: Cómo identificar Mintérminos con la función SI',
+        link: '/contenido/manual/identifyminterms',
+        key: '3-2'
+      },
+      {
+        title: '3: Mintérminos Resultantes con función SI y AND',
+        link: '/contenido/manual/resultingminterms',
+        key: '3-3'
+      }
+    ]
   },
   {
     title: 'Conclusión',
