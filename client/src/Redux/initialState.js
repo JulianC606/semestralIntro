@@ -3,5 +3,8 @@ export default {
     loading: true,
     pages: []
   },
-  location: ''
+  location: {
+    path: '',
+    background: 'white'
+  }
 }

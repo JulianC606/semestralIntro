@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { Switch, Route } from 'react-router-dom'
 import { IndicePage } from './IndicePage'
@@ -12,10 +12,29 @@ import { BuildTruthTable } from './contenido/manual/BuildTruthTable'
 import { IdentifyMinterms } from './contenido/manual/IdentifyMinterms'
 import { ResultingMinterms } from './contenido/manual/ResultingMinterms'
 import { Conclusion } from './contenido/Conclusion'
+import { connect } from 'react-redux'
 
-export default () => {
+const backgroundStyle = (back) => {
+  const lines = back !== 'white' ? 'white' : '%23000000'
+  return {
+    backgroundColor: back,
+    backgroundImage: `url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='${lines}' fill-opacity='0.06' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E")`
+  }
+}
+
+const mapStateToProps = state => ({
+  ...state.location
+})
+
+export default connect(mapStateToProps)(({ background }) => {
+  const [divStyle, setDivStyle] = useState(backgroundStyle('white'))
+
+  useEffect(() => {
+    setDivStyle(backgroundStyle(background))
+  }, [background])
+
   return (
-    <div className='fondo'>
+    <div style={{ ...divStyle }}>
       <Switch>
         <Route path='/contenido/intro'>
           <Intro />
@@ -51,3 +70,4 @@ export default () => {
     </div>
   )
 }
+)

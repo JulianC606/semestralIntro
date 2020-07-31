@@ -19,7 +19,7 @@ export const Navbar = ({ structure, location, updateLocation }) => {
 
   return (
     <div style={navbarContentStyle}>
-      <Menu theme='dark' mode='horizontal' selectedKeys={[location.location]}>
+      <Menu theme='dark' mode='horizontal' selectedKeys={[location.path]}>
         {
           structure.pages.sort((a, b) => a.id > b.id ? 1 : -1).map(({ link, title }) => (
             <Menu.Item key={link} style={{ height: '100%' }}>
