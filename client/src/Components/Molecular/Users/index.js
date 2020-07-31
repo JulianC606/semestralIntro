@@ -16,7 +16,6 @@ export default () => {
       header={<Typography.Title style={{ marginBottom: 0, color: 'white' }}>Integrantes del Grupo 2 del Salon 1SF-702</Typography.Title>}
       dataSource={data}
       renderItem={(item) => {
-        console.log(item)
         return (
           <List.Item style={{ marginTop: '25px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <UserCard {...item} />

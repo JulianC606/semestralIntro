@@ -9,12 +9,6 @@ export const Sidebar = () => {
     <Sider
       breakpoint='lg'
       collapsedWidth='0'
-      onBreakpoint={broken => {
-        console.log(broken)
-      }}
-      onCollapse={(collapsed, type) => {
-        console.log(collapsed, type)
-      }}
       collapsible
       style={{ height: '100%', gridArea: '1 / 1 / 3 / 2' }}
     >

@@ -30,7 +30,6 @@ const cardStyle = {
 
 const ModalUser = (props) => {
   const fullName = `${props.item.name.toUpperCase()} ${props.item.lastName.toUpperCase()}`
-  console.log(props)
   return (
     <Modal
       closable
